@@ -1,0 +1,66 @@
+<DOCTYPE html>
+<html> 
+<head>
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	<title>Master of Monitoring</title>
+	
+
+</head>
+
+<body id="startseite">
+<div id="wrapper">
+
+<div id="kopfbereich"> 
+<h1> MICA - Zentral-Steuerung </h1>
+
+</div> <!-- Ende kopfbereich -->
+
+<div id="navibereich"> 
+
+</div> <!-- Ende navibereich -->
+
+<div id="textbereich"> 
+
+	<button id="maschine1" onclick="myFunction()">Maschine 1</button>
+
+	<table id="status1"></table>
+	
+		<script>
+			function myFunction() {
+    		var x;
+    		if (confirm("Press a button!") == true) {
+        		x = "You pressed OK!";
+    		} else {
+        		x = "You pressed Cancel!";
+    		}
+			xhr = new XMLHttpRequest();
+			var url = "http://localhost:8080";
+			xhr.open("POST", url, true);
+			xhr.setRequestHeader("Content-type", "application/json");
+			xhr.onreadystatechange = function () { 
+   				if (xhr.readyState == 4 && xhr.status == 200) {
+        			var json = JSON.parse(xhr.response);
+        			console.log(xhr.response)
+    				}
+				}
+			/* Select method and params for rpc methods */
+			var data = {"jsonrpc":"2.0","id":1,"method":"install_container","params": {"name":"Container3","ip":"192.168.1.13"}}
+			var JSONObjekt = JSON.stringify(data);
+			xhr.send(JSONObjekt);
+			}
+		</script>
+	
+	<button id="maschine2"> Maschine 2 </button>
+	
+	<button id="maschine3"> Maschine 3 </button>
+	
+
+</div> <!-- Ende textbereich -->
+
+<div id="fussbereich"> 
+
+</div> <!-- Ende fussbereich -->
+
+</div> <!-- Ende wrapper -->
+</body<
+</html>
